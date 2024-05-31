@@ -1,0 +1,25 @@
+.tag {
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 4px;
+}
+.green {
+  background-color: #b3f8b3;
+  color: #2d4e2d;
+  border: 1px solid #2d4e2d;
+}
+.red {
+  background-color: #f8b3b3;
+  color: #4e2d2d;
+  border: 1px solid #4e2d2d;
+}
+.yellow {
+  background-color: #f8f8b3;
+  color: #4e4d2d;
+  border: 1px solid #4e4d2d;
+}
+.purple {
+  background-color: #b3b3f8;
+  color: #2d2d4e;
+  border: 1px solid #2d2d4e;
+}
