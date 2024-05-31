@@ -19,6 +19,7 @@ interface AuthContextType {
     React.SetStateAction<ICartModelWithAggregation[] | undefined>
   >;
   cart: ICartModelWithAggregation[] | undefined;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -99,6 +100,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         login,
         cart,
         setCart,
+        logout,
       }}
     >
       {children}

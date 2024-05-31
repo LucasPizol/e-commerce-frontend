@@ -35,7 +35,7 @@ export const CartList = () => {
         <div className={styles.cart_description}>
           <span className={styles.cart_description_product}>Produto</span>
           <span>Preço</span>
-          <span>.</span>
+          <span></span>
           <span>Valor total</span>
         </div>
 

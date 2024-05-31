@@ -1,4 +1,5 @@
 import { IProductModel } from "@/interface/Product";
+import { sliceString } from "@/utils/slice-string";
 import styles from "./styles.module.css";
 
 interface OrderProductProps {
@@ -17,7 +18,7 @@ export const OrderProduct = ({ product }: OrderProductProps) => {
       />
       <div className={styles.description}>
         <h1>{product.name}</h1>
-        <p>{product.description}</p>
+        <p>{sliceString(product.description, 80)}</p>
       </div>
       <p>
         {product.quantity}x R${product.price.value.toFixed(2)}

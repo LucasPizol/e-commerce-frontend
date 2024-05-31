@@ -1,10 +1,10 @@
 .main {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
+  gap: 20px;
 }
 
 .form {
@@ -16,4 +16,23 @@
   height: 100%;
   max-width: 300px;
   gap: 12px;
+}
+
+.check_information {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.check_information.invalid {
+  color: red;
+}
+.check_information.valid {
+  color: green;
+}
+
+.validate_fields {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
 }

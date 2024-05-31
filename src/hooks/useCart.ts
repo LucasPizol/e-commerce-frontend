@@ -2,6 +2,7 @@ import { IProductModel } from "@/interface/Product";
 import { addProductToCart } from "@/request/cart/add-product-to-cart";
 import { deleteCartProduct } from "@/request/cart/delete-product";
 import { updateProductQuantityCart } from "@/request/cart/update-product-cart";
+import { toast } from "react-toastify";
 import { useAuthContext } from "../context/auth-context";
 
 export const useCart = () => {
@@ -25,12 +26,20 @@ export const useCart = () => {
 
       setCart([...copyCart]);
 
+      toast.success(`${product.name} adicionado ao carrinho`, {
+        autoClose: 2000,
+      });
+
       return;
     }
 
     const cartProduct = await addProductToCart({
       quantity: quantity,
       stripe_product_id: product.id,
+    });
+
+    toast.success(`${product.name} adicionado ao carrinho`, {
+      autoClose: 2000,
     });
 
     copyCart.push({ ...cartProduct, quantity: quantity });

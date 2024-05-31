@@ -3,6 +3,7 @@ import { LoadingPage } from "@/components/LoadingPage";
 import { useAuthContext } from "@/context/auth-context";
 import { useMemo } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { AdminScreen } from "./pages/admin";
 import { CartScreen } from "./pages/cart";
 import { CheckoutFeedback } from "./pages/checkout_feedback";
 import { HomeScreen } from "./pages/home";
@@ -30,6 +31,9 @@ export const Router = () => {
         <Route path="/cart" element={<CartScreen />} />
         <Route path="/checkout" element={<CheckoutFeedback />} />
         <Route path="/profile" element={<ProfileScreen />} />
+        {user.role === "admin" && (
+          <Route path="/admin" element={<AdminScreen />} />
+        )}
       </>
     );
   }, [user]);

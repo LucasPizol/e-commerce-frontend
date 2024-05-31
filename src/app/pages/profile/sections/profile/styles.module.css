@@ -9,3 +9,14 @@
 .content {
   width: 100%;
 }
+
+.content header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.content header h1 {
+  flex: 2;
+}

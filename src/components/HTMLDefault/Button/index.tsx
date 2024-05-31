@@ -2,28 +2,31 @@ import { Spinner } from "react-activity";
 import styles from "./styles.module.css";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  btnType?: "primary" | "secondary" | "dashed";
+  btnType?: "primary" | "secondary" | "dashed" | "danger";
   loading?: boolean;
+  divStyle?: React.CSSProperties;
 }
 
 const styleMap = {
   primary: styles.primary,
   secondary: styles.secondary,
   dashed: styles.dashed,
+  danger: styles.danger,
 };
 
 export const Button = ({
   btnType = "secondary",
   loading = false,
   children,
+  divStyle,
   ...props
 }: ButtonProps) => {
   return (
     <button
-      disabled={loading}
+      disabled={loading || props.disabled}
       {...props}
+      className={`${styles.button} ${styleMap[btnType] || styles.secondary}`}
       style={loading ? { ...props.style, opacity: 0.8 } : { ...props.style }}
-      className={styleMap[btnType] || styles.secondary}
     >
       <div
         className={loading ? styles.loading : ""}
@@ -34,6 +37,7 @@ export const Button = ({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                ...divStyle,
               }
         }
       >

@@ -1,6 +1,7 @@
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { useCart } from "@/hooks/useCart";
 import { ICartModelWithAggregation } from "@/interface/Cart";
+import { sliceString } from "@/utils/slice-string";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { Id, ToastContent, ToastOptions } from "react-toastify";
 import styles from "./styles.module.css";
@@ -20,10 +21,7 @@ export const CartProduct = ({ cartItem, toast }: CartProductProps) => {
       if (cartItem.quantity === 1) {
         await deleteProduct(cartItem.id);
         toast("Produto removido do carrinho", {
-          pauseOnHover: false,
-          pauseOnFocusLoss: false,
           autoClose: 2000,
-          position: "bottom-center",
           type: "success",
         });
         return;
@@ -48,7 +46,7 @@ export const CartProduct = ({ cartItem, toast }: CartProductProps) => {
           <div className={styles.cart_product_description} style={{ gap: 12 }}>
             <div>
               <h3>{cartItem.name}</h3>
-              <p>{cartItem.description}</p>
+              <p>{sliceString(cartItem.description, 80)}</p>
             </div>
 
             <span className={styles.cart_value} style={{ textAlign: "start" }}>
@@ -89,13 +87,10 @@ export const CartProduct = ({ cartItem, toast }: CartProductProps) => {
         />
         <div className={styles.cart_product_description}>
           <h3>{cartItem.name}</h3>
-          <p>{cartItem.description}</p>
+          <p>{sliceString(cartItem.description, 160)}</p>
         </div>
       </div>
-      <p className={styles.cart_value}>
-        <b>Preço: </b>
-        R${cartItem.price.value.toFixed(2)}
-      </p>
+      <p className={styles.cart_value}>R${cartItem.price.value.toFixed(2)}</p>
       <div className={styles.cart_modifiers}>
         <div className={styles.cart_modifier}>
           <button onClick={() => incrementProduct(cartItem.id)}>
@@ -108,7 +103,6 @@ export const CartProduct = ({ cartItem, toast }: CartProductProps) => {
         </div>
       </div>
       <div className={styles.cart_total_value}>
-        <b>Total: </b>
         <span>R${(cartItem.price.value * cartItem.quantity).toFixed(2)}</span>
       </div>
     </div>

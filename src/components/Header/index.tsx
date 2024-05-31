@@ -1,5 +1,6 @@
+import logo from "@/assets/images/logo-jardim-secreto.png";
 import { useAuthContext } from "@/context/auth-context";
-import { MdPerson, MdShoppingCart } from "react-icons/md";
+import { MdAdminPanelSettings, MdPerson, MdShoppingCart } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Button } from "../HTMLDefault/Button";
@@ -14,9 +15,10 @@ export const Header = ({ children }: { children: JSX.Element }) => {
     <main className={styles.main}>
       <header className={styles.header}>
         <div className={styles.div}>
-          <h1 className={styles.h1} onClick={() => navigate("/home")}>
-            Header
-          </h1>
+          <div className={styles.logo} onClick={() => navigate("/home")}>
+            <img src={logo} />
+            <h1> Jardim secreto </h1>
+          </div>
           <nav>
             {user && (
               <div className={styles.auth_buttons}>
@@ -35,15 +37,32 @@ export const Header = ({ children }: { children: JSX.Element }) => {
                     {cart?.reduce((prev, item) => item.quantity + prev, 0)}
                   </span>
                 </div>
+
+                {user.role === "admin" && (
+                  <div
+                    style={{ cursor: "pointer", position: "relative" }}
+                    onClick={() => navigate("/admin")}
+                  >
+                    <MdAdminPanelSettings
+                      style={{ cursor: "pointer" }}
+                      color="orange"
+                      size={30}
+                    />
+                  </div>
+                )}
               </div>
             )}
 
             {!user && (
               <div className={styles.buttons}>
-                <Link style={{ color: "#fff" }} to={"/register"}>
+                <Link
+                  style={{ color: "var(--primary-color)" }}
+                  to={"/register"}
+                >
                   Cadastrar
                 </Link>
                 <Button
+                  btnType="primary"
                   onClick={() => navigate("/login")}
                   style={{
                     paddingLeft: 20,
@@ -57,7 +76,17 @@ export const Header = ({ children }: { children: JSX.Element }) => {
           </nav>
         </div>
       </header>
-      <ToastContainer pauseOnFocusLoss={false} pauseOnHover={false} />
+      <ToastContainer
+        pauseOnFocusLoss={false}
+        pauseOnHover={false}
+        position="top-right"
+        toastStyle={{
+          boxShadow: "0 5px 25px 0px #00000029",
+        }}
+        style={{
+          top: 120,
+        }}
+      />
       <section className={styles.section}>{children}</section>
     </main>
   );

@@ -6,13 +6,14 @@
 }
 
 :root {
-  --primary-color: #242424;
-  --secondary-color: #f8f8f8;
+  --primary-color: #534377;
+  --secondary-color: #e2e2e2;
   --tertiary-color: #c9c9c9;
+  --quartiary-color: #f1bbff;
   --border-radius: 4px;
 
-  --primary-hover: #111111;
-  --secondary-hover: #e6e6e6;
+  --primary-hover: #463866;
+  --secondary-hover: #d4d4d4;
 }
 
 * {

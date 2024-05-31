@@ -2,6 +2,7 @@ import { Button } from "@/components/HTMLDefault/Button";
 import { Form } from "@/components/HTMLDefault/Form";
 import { Input, InputPassword } from "@/components/HTMLDefault/Input";
 import { InputWrapper } from "@/components/HTMLDefault/InputWrapper";
+import { useAuthContext } from "@/context/auth-context";
 import { useForm } from "@/hooks/useForm";
 import { IUserModel } from "@/interface/User";
 import { updateUser } from "@/request/user/update-user";
@@ -9,12 +10,10 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import styles from "./styles.module.css";
 
-interface IProfileSectionProps {
-  user: IUserModel;
-}
-
-export const ProfileSection = ({ user }: IProfileSectionProps) => {
+export const ProfileSection = () => {
   const [newFields, setNewFields] = useState<Partial<IUserModel>>({});
+  const { user, logout } = useAuthContext();
+  if (!user) return null;
 
   const { fields, handleChange } = useForm<
     Partial<IUserModel & { confirm_password: string }>
@@ -48,7 +47,18 @@ export const ProfileSection = ({ user }: IProfileSectionProps) => {
 
   return (
     <div className={styles.content}>
-      <h1>Seu perfil</h1>
+      <header>
+        <h1>Seu perfil</h1>
+        <Button
+          style={{
+            flex: 1,
+          }}
+          btnType="danger"
+          onClick={logout}
+        >
+          Encerrar Sessão
+        </Button>
+      </header>
       <span>Atualize suas informações</span>
       <Form onFinish={handleSubmit} className={styles.form}>
         <InputWrapper label="Nome Completo">

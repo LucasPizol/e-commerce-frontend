@@ -1,4 +1,8 @@
+import { Button } from "@/components/HTMLDefault/Button";
 import { IOrderModel } from "@/interface/Order";
+import { retrieveOrder } from "@/request/orders/retrieve-order";
+import { useState } from "react";
+import { toast } from "react-toastify";
 import { OrderProduct } from "../Product";
 import { Tag, TagStatus } from "../Tag";
 import styles from "./styles.module.css";
@@ -27,6 +31,20 @@ const paymentMethodsMap: {
 };
 
 export const Order = ({ order }: OrderProps) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleRetrieveOrder = async () => {
+    try {
+      setLoading(true);
+      const { url } = await retrieveOrder(order.id);
+      setLoading(false);
+      window.open(url, "_blank");
+    } catch (error) {
+      toast.error("Erro ao recuperar pedido");
+      setLoading(false);
+    }
+  };
+
   return (
     <div className={styles.div}>
       <header>
@@ -45,7 +63,6 @@ export const Order = ({ order }: OrderProps) => {
               ))}
           </div>
         </div>
-
         <span></span>
         <p>R${order.amount_total.toFixed(2)}</p>
       </header>
@@ -54,6 +71,15 @@ export const Order = ({ order }: OrderProps) => {
           <OrderProduct key={product.id} product={product} />
         ))}
       </section>
+      {order.status === "unpaid" && (
+        <Button
+          btnType="primary"
+          onClick={handleRetrieveOrder}
+          loading={loading}
+        >
+          Continuar pagamento
+        </Button>
+      )}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { useAuthContext } from "@/context/auth-context";
 import { useCart } from "@/hooks/useCart";
 import { IProductModel } from "@/interface/Product";
+import { sliceString } from "@/utils/slice-string";
 import { useMemo, useState } from "react";
 import { BiCartAdd } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
@@ -43,8 +44,6 @@ export const Product = ({ product }: ProductProps) => {
 
   const existsInCart = useMemo(() => {
     const exists = cart?.find((item) => item.stripe_product_id === product.id);
-    console.log(exists);
-
     return exists;
   }, [cart]);
 
@@ -59,7 +58,9 @@ export const Product = ({ product }: ProductProps) => {
       />
       <div className={styles.product_data}>
         <h1>{product.name}</h1>
-        <p className={styles.description}>{product.description}</p>
+        <p className={styles.description}>
+          {sliceString(product.description, 80)}
+        </p>
         <p className={styles.value}>R${product.price.value.toFixed(2)}</p>
       </div>
       <Button onClick={handleAddProduct} btnType="primary" loading={loading}>

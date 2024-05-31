@@ -30,6 +30,11 @@ export const CheckoutFeedback = () => {
   }, []);
 
   useEffect(() => {
+    if (!token) {
+      setStatus("error");
+      setLoading(false);
+    }
+
     if (token && !loadingPage && user) {
       clearCart(token)
         .then(() => {
@@ -57,7 +62,7 @@ export const CheckoutFeedback = () => {
       </main>
     );
 
-  if (status === "error" && token) {
+  if (status === "error") {
     return (
       <main className={styles.main}>
         <div className={styles.div}>
