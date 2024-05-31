@@ -1,0 +1,16 @@
+.div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.label {
+  font-size: 13px;
+}
+
+.label span {
+  color: #f00;
+  padding-left: 2px;
+}

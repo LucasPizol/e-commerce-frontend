@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap");
+
+@font-face {
+  font-family: "Astronpoliz";
+  src: url("./assets/fonts/Astonpoliz.ttf");
+}
+
+:root {
+  --primary-color: #242424;
+  --secondary-color: #f8f8f8;
+  --tertiary-color: #c9c9c9;
+  --border-radius: 4px;
+
+  --primary-hover: #111111;
+  --secondary-hover: #e6e6e6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Astronpoliz", sans-serif;
+}
+
+input,
+button {
+  font-family: "Astronpoliz", sans-serif !important;
+}
