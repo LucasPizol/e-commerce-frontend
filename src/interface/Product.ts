@@ -10,8 +10,13 @@ export interface IProductModel {
   description: string;
   price: {
     id: string;
-    value: number
+    value: number;
   };
   images: string[];
-  metadata: any;
+  metadata: {
+    carousel?: boolean;
+    carousel_background?: string;
+    category: string;
+    tags: string[];
+  };
 }

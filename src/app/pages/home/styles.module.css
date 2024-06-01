@@ -9,4 +9,8 @@
 .div {
   max-width: 1400px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 45px;
 }

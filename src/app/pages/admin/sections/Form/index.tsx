@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 import styles from "./styles.module.css";
 
 export const ProductForm = () => {
-  const { fields, handleChange } = useForm<IAddProductModel>();
+  const { fields, handleChange, setFields } = useForm<IAddProductModel>();
   const [fileList, setFileList] = useState<CustomFile[]>([]);
 
   const [loading, setLoading] = useState(false);
@@ -26,6 +26,8 @@ export const ProductForm = () => {
       setLoading(true);
       await addProduct(fields, fileList);
       toast.success("Produto adicionado com sucesso!");
+      setFields({} as IAddProductModel);
+      setFileList([]);
     } catch (error) {
       toast.error("Erro ao adicionar produto!");
     }

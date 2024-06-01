@@ -1,0 +1,91 @@
+.carousel {
+  width: 100%;
+  height: 40vh;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.carousel_div {
+  width: 100%;
+  transition: 0.5s;
+  display: flex;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  object-fit: contain;
+  top: 0;
+  left: 0;
+}
+
+.product_div {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 45px;
+  gap: 20px;
+  justify-content: space-between;
+  background: linear-gradient(
+    to left,
+    var(--primary-color),
+    #c79be0,
+    var(--primary-color)
+  );
+}
+
+.product {
+  z-index: 999;
+  border-radius: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+}
+.product_info {
+  color: #fff;
+  max-width: 750px;
+  width: 100%;
+}
+.product_info p {
+  color: #f5eafd;
+  margin-top: 12px;
+  text-align: justify;
+}
+.price {
+  font-size: 28px;
+  font-weight: bold;
+}
+.carousel_dots {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  bottom: 15px;
+  gap: 12px;
+}
+.carousel_dot {
+  display: flex;
+  justify-content: center;
+  bottom: 10px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(245, 245, 245, 0.616);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.carousel_dot.carousel_active {
+  background-color: #fff;
+}
