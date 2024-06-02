@@ -10,6 +10,7 @@ export const addProduct = async (
   formData.append("product[name]", data.name);
   formData.append("product[description]", data.description);
   formData.append("product[price]", data.price.toString());
+  formData.append("product[metadata][brand]", data.metadata.brand);
 
   images?.forEach((image) => {
     formData.append("product[images][]", image);

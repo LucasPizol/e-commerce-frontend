@@ -50,7 +50,7 @@ export const ScreenWithOptions = ({
 
     return options.find((option) => option.sectionName === section)
       ?.sectionComponent;
-  }, [user, section]);
+  }, [user, section, options]);
 
   return (
     <main className={styles.main}>

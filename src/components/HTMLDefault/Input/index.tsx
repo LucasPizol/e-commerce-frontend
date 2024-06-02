@@ -41,10 +41,9 @@ export const TextArea = (props: TextAreaProps) => {
     <textarea
       {...props}
       style={{
-        resize: "vertical",
+        resize: "none",
         transition: "0.5s, height 0s",
-        maxHeight: "200px",
-        minHeight: "80px",
+        minHeight: "200px",
         ...props.style,
       }}
       className={styles.input}
