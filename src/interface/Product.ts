@@ -12,6 +12,7 @@ export interface IAddProductFieldsModel {
   description: string;
   price: number;
   brand: string;
+  categories: string[];
 }
 
 export interface IProductModel {
@@ -27,7 +28,7 @@ export interface IProductModel {
     carousel?: boolean;
     carousel_background?: string;
     brand: string;
-    category: string;
+    categories: string[];
     tags: string[];
   };
 }

@@ -32,6 +32,8 @@ export const ProductsList = ({
     const newFields = {} as any;
 
     Object.keys(fields).forEach((key) => {
+      console.log(newFields);
+
       const thisKey = key as keyof IAddProductFieldsModel;
       if (thisKey === "price") {
         if (fields[thisKey] !== product[thisKey].value) {
@@ -42,7 +44,19 @@ export const ProductsList = ({
 
       if (thisKey === "brand") {
         if (fields[thisKey] !== product.metadata.brand) {
-          newFields[thisKey] = fields[thisKey];
+          if (!newFields["metadata"]) newFields["metadata"] = {} as any;
+
+          newFields.metadata[thisKey] = fields[thisKey];
+        }
+        return;
+      }
+
+      if (thisKey === "categories") {
+        if (
+          fields[thisKey].join(",") !== product.metadata.categories?.join(",")
+        ) {
+          if (!newFields["metadata"]) newFields["metadata"] = {} as any;
+          newFields.metadata[thisKey] = fields[thisKey].join(",");
         }
         return;
       }

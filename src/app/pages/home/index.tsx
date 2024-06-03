@@ -18,16 +18,19 @@ export const HomeScreen = () => {
   return (
     <main className={styles.main}>
       <div className={styles.div}>
-        <HomeFilters data={data} filter={filter} setFilter={setFilter} />
         <Carousel products={data} timeToChange={7500} />
+        <HomeFilters data={data} filter={filter} setFilter={setFilter} />
+
         <ProductList
           products={
             filter === "all"
               ? data
               : data?.filter(
                   (product) =>
-                    product.metadata.brand.toLowerCase() ===
-                    filter.toLowerCase()
+                    !!product.metadata.categories.find(
+                      (category) =>
+                        category.toLowerCase() === filter.toLowerCase()
+                    )
                 )
           }
           isLoading={isLoading}

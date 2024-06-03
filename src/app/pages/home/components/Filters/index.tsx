@@ -1,4 +1,5 @@
 import { IProductModel } from "@/interface/Product";
+import { removeDuplicated } from "@/utils/remove-duplicated";
 import { useMemo } from "react";
 import styles from "./styles.module.css";
 
@@ -9,27 +10,34 @@ interface HomeFiltersProps {
 }
 
 export const HomeFilters = ({ data, filter, setFilter }: HomeFiltersProps) => {
-  const brands = useMemo(() => {
-    const brands = data?.map((product) => product.metadata.brand);
+  const categories = useMemo(() => {
+    const categories = data
+      ?.map((product) => product.metadata.categories)
+      .flat();
 
-    return Array.from(new Set(brands));
+    if (!categories) return [];
+
+    const uniqueCategories = removeDuplicated(categories);
+
+    return uniqueCategories;
   }, [data]);
 
   return (
     <div className={styles.filters}>
-      {brands?.map((brand) => (
+      {categories?.map((category) => (
         <span
           style={
-            filter.toLowerCase() === brand.toLowerCase()
+            filter.toLowerCase() === category.toLowerCase()
               ? { fontWeight: "bold" }
               : {}
           }
           onClick={() => {
-            if (filter.toLowerCase() === brand.toLowerCase()) setFilter("all");
-            else setFilter(brand);
+            if (filter.toLowerCase() === category.toLowerCase())
+              setFilter("all");
+            else setFilter(category);
           }}
         >
-          {brand}
+          {category}
         </span>
       ))}
     </div>

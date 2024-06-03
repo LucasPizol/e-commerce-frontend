@@ -9,7 +9,9 @@ import { InputWrapper } from "@/components/HTMLDefault/InputWrapper";
 import { IAddProductFieldsModel, IProductModel } from "@/interface/Product";
 
 import { Button } from "@/components/HTMLDefault/Button";
+import { removeDuplicated } from "@/utils/remove-duplicated";
 import { useEffect, useMemo } from "react";
+import Select from "react-select";
 import Creatable from "react-select/creatable";
 import styles from "./styles.module.css";
 
@@ -51,15 +53,30 @@ export const ProductForm = ({
         description: product.description,
         price: product.price.value,
         brand: product.metadata.brand,
+        categories: product.metadata.categories,
       });
   }, [product]);
 
-  const brands = useMemo(() => {
+  const metadataOptions = useMemo(() => {
+    const formatArray = (array: string[]) => {
+      return array.map((item) => ({ value: item, label: item }));
+    };
+
     const brands = data?.map((product) => product.metadata.brand);
+    const categories = data?.map((product) =>
+      product.metadata.categories?.join(",")
+    );
 
-    if (!brands) return [];
+    if (!brands || !categories)
+      return {
+        brands: [],
+        categories: [],
+      };
 
-    return brands.map((brand) => ({ value: brand, label: brand }));
+    return {
+      brands: formatArray(removeDuplicated(brands)),
+      categories: formatArray(removeDuplicated(categories)),
+    };
   }, [data]);
 
   return (
@@ -102,11 +119,32 @@ export const ProductForm = ({
       <InputWrapper label="Marca" required>
         <Creatable
           styles={{ container: (provided) => ({ ...provided, width: "100%" }) }}
-          options={brands}
+          options={metadataOptions.brands}
+          value={{ value: fields.brand, label: fields.brand }}
           formatCreateLabel={(value) => `Criar ${value}`}
           placeholder="Selecione ou crie uma marca"
           onChange={(value) =>
             setFields({ ...fields, brand: String(value?.value) })
+          }
+        />
+      </InputWrapper>
+      <InputWrapper label="Categoria" required>
+        <Select
+          isMulti
+          styles={{ container: (provided) => ({ ...provided, width: "100%" }) }}
+          options={metadataOptions.categories}
+          value={
+            fields.categories?.map((category) => ({
+              value: category,
+              label: category,
+            })) as any
+          }
+          placeholder="Selecione ou crie uma categoria"
+          onChange={(value) =>
+            setFields({
+              ...fields,
+              categories: value?.map((v) => String(v.value)) || [],
+            })
           }
         />
       </InputWrapper>
