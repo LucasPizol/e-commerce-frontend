@@ -8,5 +8,5 @@ export const authUser = async (
   user: IUserTokenModel;
   cart: ICartModelWithAggregation[];
 }> => {
-  return (await api.post("/login", { user })).data;
+  return (await api.post("/auth/login", { user })).data;
 };

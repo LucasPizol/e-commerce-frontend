@@ -6,5 +6,5 @@ export const verifyAuth = async (): Promise<{
   user: IUserModel;
   cart: ICartModelWithAggregation[];
 }> => {
-  return (await api.get("/auth")).data;
+  return (await api.get("/auth/verify")).data;
 };

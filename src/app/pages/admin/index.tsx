@@ -71,7 +71,7 @@ export const AdminScreen = () => {
         sectionUrl: "/profile",
       },
     ];
-  }, [data, fileList, fields]);
+  }, [data, fileList, fields, loading]);
 
   return <ScreenWithOptions defaultUrl="/admin" options={options} />;
 };
