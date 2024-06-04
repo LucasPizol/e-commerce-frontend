@@ -28,6 +28,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  gap: 60px;
 }
 
 .section {
@@ -38,7 +39,7 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
   cursor: pointer;
 }
 .logo h1 {
@@ -49,11 +50,12 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-size: 20px;
 }
 
 .logo img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 
 .buttons {
@@ -82,4 +84,26 @@
   color: #fff;
   border-radius: 50%;
   line-height: 0;
+}
+.header nav {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav_left {
+  display: flex;
+  align-items: center;
+  gap: 40%;
+}
+
+.link {
+  color: rgb(66, 66, 66);
+  text-decoration: none;
+  transition: 0.3s;
+}
+.link.active {
+  font-weight: 600;
+  color: #000;
 }

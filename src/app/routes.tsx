@@ -8,6 +8,7 @@ import { CartScreen } from "./pages/cart";
 import { CheckoutFeedback } from "./pages/checkout_feedback";
 import { HomeScreen } from "./pages/home";
 import { LoginScreen } from "./pages/login";
+import { ProductScreen } from "./pages/product";
 import { ProfileScreen } from "./pages/profile";
 import { RegisterScreen } from "./pages/register";
 
@@ -43,6 +44,7 @@ export const Router = () => {
       <Header>
         <Routes>
           <Route path="/home" element={<HomeScreen />} />
+          <Route path="/product/:id" element={<ProductScreen />} />
           {conditionalRoutes}
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>

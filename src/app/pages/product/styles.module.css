@@ -10,7 +10,7 @@
   max-width: 1400px;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   justify-content: center;
   width: 100%;

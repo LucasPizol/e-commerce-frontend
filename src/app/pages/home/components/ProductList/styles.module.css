@@ -1,6 +1,22 @@
-.product_list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+.product_list_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
-  min-height: 90vh;
+}
+
+.product_list_wrapper h2 {
+  font-size: 24px;
+  color: #000000;
+}
+
+.product_list {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 12px;
 }

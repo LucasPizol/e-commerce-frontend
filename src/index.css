@@ -1,9 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap");
-
-@font-face {
-  font-family: "Astronpoliz";
-  src: url("./assets/fonts/Astonpoliz.ttf");
-}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   --primary-color: #534377;
@@ -20,19 +15,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Astronpoliz", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 input,
 button {
-  font-family: "Astronpoliz", sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #242424b4;
+  background-color: #53437780;
   border-radius: 12px;
   width: 3px;
-  border: 4px solid var(--secondary-color);
+  border: 4px solid #fff;
 }
 
 ::-webkit-scrollbar {

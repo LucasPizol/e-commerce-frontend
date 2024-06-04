@@ -6,11 +6,12 @@ interface LinkProps {
   to: string;
   children: string;
   style?: React.CSSProperties;
+  className?: string;
 }
 
-export const Link = ({ to, children, style }: LinkProps) => {
+export const Link = ({ to, children, style, className }: LinkProps) => {
   return (
-    <ALink style={style} className={styles.link} to={to}>
+    <ALink style={style} className={className || styles.link} to={to}>
       {children}
     </ALink>
   );

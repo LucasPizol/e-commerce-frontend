@@ -1,7 +1,7 @@
 import logo from "@/assets/images/logo-jardim-secreto.png";
 import { useAuthContext } from "@/context/auth-context";
 import { MdAdminPanelSettings, MdPerson, MdShoppingCart } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Button } from "../HTMLDefault/Button";
 import { Link } from "../HTMLDefault/Link";
@@ -9,6 +9,13 @@ import styles from "./styles.module.css";
 
 export const Header = ({ children }: { children: JSX.Element }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const activeStyle = (path: string) => {
+    if (location.pathname === path) return `${styles.link} ${styles.active}`;
+    return styles.link;
+  };
+
   const { user, cart } = useAuthContext();
 
   return (
@@ -20,6 +27,14 @@ export const Header = ({ children }: { children: JSX.Element }) => {
             <h1> Jardim secreto </h1>
           </div>
           <nav>
+            <div className={styles.nav_left}>
+              <Link to="/home" className={activeStyle("/home")}>
+                Início
+              </Link>
+              <Link to="/products" className={activeStyle("/products")}>
+                Produtos
+              </Link>
+            </div>
             {user && (
               <div className={styles.auth_buttons}>
                 <div

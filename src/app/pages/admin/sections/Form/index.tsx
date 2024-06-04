@@ -64,7 +64,7 @@ export const ProductForm = ({
 
     const brands = data?.map((product) => product.metadata.brand);
     const categories = data?.map((product) =>
-      product.metadata.categories?.join(",")
+      product.metadata.categories.map((category) => category)
     );
 
     if (!brands || !categories)
@@ -75,7 +75,7 @@ export const ProductForm = ({
 
     return {
       brands: formatArray(removeDuplicated(brands)),
-      categories: formatArray(removeDuplicated(categories)),
+      categories: formatArray(removeDuplicated(categories.flat())),
     };
   }, [data]);
 
